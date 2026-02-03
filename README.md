@@ -10,12 +10,12 @@
 <br />
 
 <div align="center">
-  <img src="https://img.shields.io/github/languages/top/rafaelq80/conta_bancaria_ts_2026?style=flat-square" />
-  <img src="https://img.shields.io/github/repo-size/rafaelq80/conta_bancaria_ts_2026?style=flat-square" />
-  <img src="https://img.shields.io/github/languages/count/rafaelq80/conta_bancaria_ts_2026?style=flat-square" />
-  <img src="https://img.shields.io/github/last-commit/rafaelq80/conta_bancaria_ts_2026?style=flat-square" />
-  <img src="https://img.shields.io/github/issues/rafaelq80/conta_bancaria_ts_2026?style=flat-square" />
-  <img src="https://img.shields.io/github/issues-pr/rafaelq80/conta_bancaria_ts_2026?style=flat-square" />
+  <img src="https://img.shields.io/github/languages/top/SabrinaNovaes/conta_bancaria_ts_2026?style=flat-square" />
+  <img src="https://img.shields.io/github/repo-size/SabrinaNovaes/conta_bancaria_ts_2026?style=flat-square" />
+  <img src="https://img.shields.io/github/languages/count/SabrinaNovaes/conta_bancaria_ts_2026?style=flat-square" />
+  <img src="https://img.shields.io/github/last-commit/SabrinaNovaes/conta_bancaria_ts_2026?style=flat-square" />
+  <img src="https://img.shields.io/github/issues/SabrinaNovaes/conta_bancaria_ts_2026?style=flat-square" />
+  <img src="https://img.shields.io/github/issues-pr/SabrinaNovaes/conta_bancaria_ts_2026?style=flat-square" />
   <img src="https://img.shields.io/badge/status-conclu%C3%ADdo-brightgreen" alt="Status: Concluído">
 </div>
 
