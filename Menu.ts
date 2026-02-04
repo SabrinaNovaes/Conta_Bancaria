@@ -8,7 +8,7 @@ export function main() {
 
     while (true) {
 
-        console.log(colors.bg.black, colors.fg.blue,
+        console.log(colors.bg.magenta, colors.fg.blackstrong,
             '--------------------------------------------------------------------------------------------');
         console.log('                                         Cyber Bank                                           ');
         console.log('  --------------------------------------------------------------------------------------------');
@@ -22,7 +22,7 @@ export function main() {
         console.log('              | 9 - sair                    |                                     |           ');
         console.log('              |_____________________________|_____________________________________|           ');
         console.log('  --------------------------------------------------------------------------------------------');
-        console.log('                                                                                              ',
+        console.log('                                                                                             ',
         colors.reset);
         
         console.log(colors.fg.whitestrong);
