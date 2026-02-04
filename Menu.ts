@@ -1,6 +1,6 @@
-import readline = require('readline-sync');
 import { colors } from './src/util/Colors';
 import { Conta } from './src/model/Conta';
+import { Input } from './src/util/Input';
 
 
 export function main() {
@@ -47,15 +47,15 @@ export function main() {
         console.log('                                                                                             ',
         colors.reset);
         
-        console.log(colors.fg.whitestrong);
-        opcao = readline.questionInt('Entre com a opção desejada: ');
+        console.log(colors.fg.whitestrong, '\nEntre com a opção desejada: ');
+        opcao = Input.questionInt('');
         console.log(colors.reset);
 
         if (opcao === 9) {
             console.log(colors.fg.whitestrong,
-                '\nCyber Bank - O seu Futuro Começa aqui!');
+                '\nCyber Bank - O seu Futuro Começa aqui!', 
+                colors.reset);
             sobre();
-            console.log(colors.reset);
             process.exit(0);
         }
 
@@ -63,57 +63,56 @@ export function main() {
             case 1:
                 console.log(colors.fg.blue,
                     '\n\nCriar Conta\n\n');
-
-                console.log(colors.reset);
+                    keyPress();
                 break;
 
             case 2:
                 console.log(colors.fg.blue,
                     '\n\nListar todas as Contas\n\n');
-
-                console.log(colors.reset);
+                    keyPress();
                 break;
 
             case 3:
                 console.log(colors.fg.blue,
                     '\n\nConsultar dados da Conta - por número\n\n');
-
-                console.log(colors.reset);
+                    keyPress();
                 break;
 
             case 4:
                 console.log(colors.fg.blue,
                     '\n\nAtualizar dados da Conta\n\n');
-
-                console.log(colors.reset);
+                    keyPress();
                 break;
 
             case 5:
                 console.log(colors.fg.blue,
                     '\n\nApagar uma Conta\n\n');
+                    keyPress();
             break;
 
             case 6:
                 console.log(colors.fg.blue,
                     '\n\nSaque\n\n');
+                    keyPress();
                 break;
 
             case 7:
                 console.log(colors.fg.blue,
                     '\n\nDepósito\n\n');
+                    keyPress();
                 break;
 
             case 8:
                 console.log(colors.fg.blue,
-                    '\n\nTranferência entre Contas\n\n', colors.reset);
-
+                    '\n\nTranferência entre Contas\n\n', 
+                    colors.reset);
+                    keyPress();
                 break;
 
             default:
                 console.log(colors.fg.red,
                     '\nOpção inválida!\n', colors.reset);
-
-                console.log(colors.reset);
+                    keyPress();
         }
     }
 }
@@ -126,6 +125,13 @@ function sobre(): void {
     console.log('   |           github.com/SabrinaNovaes              |  ');
     console.log('   ---------------------------------------------------\n',
     colors.reset);
+}
+
+
+/* Função de pausa entre as opções do menu */
+function keyPress(): void {
+    console.log(colors.reset,"\nPressione enter para continuar...");
+    Input.prompt();
 }
 
 main();
