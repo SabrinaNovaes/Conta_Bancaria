@@ -1,8 +1,9 @@
 import { colors } from '../util/Colors';
 
-export class Conta {
-    // Atributos da Classe
-    private _numero: number; // _ boas práticas para atributos privados
+// abstract deixa a classe abstrata. não pode ser instanciada
+export abstract class Conta {
+    // Atributos da Classe // readonly não deixa alterar o valor, somente leitura
+    private readonly _numero: number; // _ boas práticas para atributos privados
     private _agencia: number;
     private _titular: string;
     private _tipo: number;
@@ -37,9 +38,9 @@ export class Conta {
 		return this._saldo;
 	}
 
-	public set numero(value: number) {
-		this._numero = value;
-	}
+	//public set numero(value: number) {
+	//	this._numero = value;
+	//}
 
 	public set agencia(value: number) {
 		this._agencia = value;
@@ -60,12 +61,12 @@ export class Conta {
     // Metodos Auxiliares
     public sacar(valor: number): boolean {
 
-        if ((valor > this.saldo) || (valor <= 0)) {
-            console.log(colors.fg.red,'Operação Inválida!', colors.reset);
+        if ((valor > this._saldo) || (valor <= 0) || (this._saldo <= 0)) {
+            console.log(colors.fg.red,'Saldo Insuficiente!', colors.reset);
             return false;
         }
 
-        this.saldo -= valor;
+        this._saldo -= valor;
         return true;
     }
 
@@ -94,14 +95,16 @@ export class Conta {
                 tipo = "Tipo inválido";
         }
 
-        console.log('\n----------------------------------------------------------');
+        console.log(colors.fg.magenta,
+            '\n----------------------------------------------------------');
         console.log('                      Dados da Conta                      ');
-        console.log('----------------------------------------------------------');
-        console.log(`Número da conta: ${this.numero}`);
+        console.log('----------------------------------------------------------', colors.reset);
+        console.log(colors.fg.whitestrong,
+            `Número da conta: ${this.numero}`);
         console.log(`Número da Agência: ${this.agencia}`);
         console.log(`Nome do titular: ${this.titular}`);
         console.log(`Tipo da conta: ${tipo}`);
-        console.log(`Saldo da conta: R$${this._saldo.toFixed(2)}`);
+        console.log(`Saldo da conta: R$${this._saldo.toFixed(2)}`, colors.reset);
     }
 
 }
