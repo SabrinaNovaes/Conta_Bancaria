@@ -1,36 +1,47 @@
 import { colors } from './src/util/Colors';
-import { Conta } from './src/model/Conta';
 import { Input } from './src/util/Input';
-
+import { ContaCorrente } from './src/model/ContaCorrente';
+import { ContaPoupanca } from './src/model/ContaPoupanca';
 
 export function main() {
 
     let opcao: number;
 
-    const c1 = new Conta(1, 1234, "Sabrina", 1, 100000.00);
+    // Testes da classe ContaCorrente
+    const cc1 = new ContaCorrente(2, 5678, "Bianca", 1, 200000.00, 2000.00);
 
-    // Teste metodo sacar
-    console.log('sacar 100,00: ', c1.sacar(100));
-    console.log('sacar 2000000: ', c1.sacar(200000));
-    console.log('sacar 0: ', c1.sacar(0.00));
+    cc1.visualizar();
 
-    // Teste Método depositar
-    console.log('Depositar -10: ');
-    c1.depositar(0);
+    // Teste do Método sacar - conta corrente
+    console.log('Sacar R$1000.00', cc1.sacar(1000.00));
+    console.log('Sacar R$200000.00', cc1.sacar(200000.00));
+    console.log('Sacar R$2.00', cc1.sacar(2.00));
 
-    console.log('Depositar 500: ');
-    c1.depositar(500);
+    // Teste depositar
+    console.log('Depositar R$500.00', cc1.depositar(500.00));
 
-    c1.visualizar
-    
-    // Instanciar Objetos da Classe Conta;
-    c1.visualizar();
+    cc1.visualizar();
 
-    console.log('O titular da conta é: ', c1.titular);
+    // Teste Conta Poupança
+    const hoje = new Date().getDate();
+    const cp1 = new ContaPoupanca(2, 3456, "Coco", 2, 0, hoje);
+
+    cp1.visualizar();
+
+    // Teste Sacar
+    console.log('Sacar R$100,00', cp1.sacar(100.00));
+    console.log('Sacar R$2,00', cp1.sacar(2.00));
+
+    // Teste Depositar
+    console.log('Depositar R$20000.00', cp1.depositar(20000.00));
+
+    // Teste rendimento
+    console.log('Sua conta rendeu:', cp1.aplicarRendimento());
+    cp1.visualizar();
 
     while (true) {
 
-        console.log(colors.bg.magenta, colors.fg.blackstrong,
+        console.log(colors.fg.magenta,
             '--------------------------------------------------------------------------------------------');
         console.log('                                         Cyber Bank                                           ');
         console.log('  --------------------------------------------------------------------------------------------');

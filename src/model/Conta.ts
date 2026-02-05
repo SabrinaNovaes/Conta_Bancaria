@@ -60,8 +60,8 @@ export class Conta {
     // Metodos Auxiliares
     public sacar(valor: number): boolean {
 
-        if ((valor > this.saldo) || (valor <= 0)) {
-            console.log(colors.fg.red,'Operação Inválida!', colors.reset);
+        if ((valor > this.saldo) || (valor <= 0) || (this.saldo <= 0)) {
+            console.log(colors.fg.red, 'Saldo Insuficiente!', colors.reset);
             return false;
         }
 
