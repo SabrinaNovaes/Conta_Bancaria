@@ -7,38 +7,6 @@ export function main() {
 
     let opcao: number;
 
-    // Testes da classe ContaCorrente
-    const cc1 = new ContaCorrente(2, 5678, "Bianca", 1, 200000.00, 2000.00);
-
-    cc1.visualizar();
-
-    // Teste do Método sacar - conta corrente
-    console.log('Sacar R$1000.00', cc1.sacar(1000.00));
-    console.log('Sacar R$200000.00', cc1.sacar(200000.00));
-    console.log('Sacar R$2.00', cc1.sacar(2.00));
-
-    // Teste depositar
-    console.log('Depositar R$500.00', cc1.depositar(500.00));
-
-    cc1.visualizar();
-
-    // Teste Conta Poupança
-    const hoje = new Date().getDate();
-    const cp1 = new ContaPoupanca(2, 3456, "Coco", 2, 0, hoje);
-
-    cp1.visualizar();
-
-    // Teste Sacar
-    console.log('Sacar R$100,00', cp1.sacar(100.00));
-    console.log('Sacar R$2,00', cp1.sacar(2.00));
-
-    // Teste Depositar
-    console.log('Depositar R$20000.00', cp1.depositar(20000.00));
-
-    // Teste rendimento
-    console.log('Sua conta rendeu:', cp1.aplicarRendimento());
-    cp1.visualizar();
-
     while (true) {
 
         console.log(colors.fg.magenta,
