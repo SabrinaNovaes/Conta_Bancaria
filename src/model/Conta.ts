@@ -1,7 +1,9 @@
 import { colors } from '../util/Colors';
+import { formatarMoeda } from '../util/Currency';
 
 // abstract deixa a classe abstrata. não pode ser instanciada
 export abstract class Conta {
+
     // Atributos da Classe // readonly não deixa alterar o valor, somente leitura
     private readonly _numero: number; // _ boas práticas para atributos privados
     private _agencia: number;
@@ -61,10 +63,13 @@ export abstract class Conta {
     // Metodos Auxiliares
     public sacar(valor: number): boolean {
 
-        if ((valor > this.saldo) || (valor <= 0) || (this.saldo <= 0)) {
+        if ((valor > this.saldo) || (this.saldo <= 0)) {
             console.log(colors.fg.red, 'Saldo Insuficiente!', colors.reset);
             return false;
         }
+
+        if (valor <= 0)
+            console.log(colors.fg.red, '\nSaque Inválido!', colors.reset);
 
         this._saldo -= valor;
         return true;
@@ -73,7 +78,7 @@ export abstract class Conta {
     public depositar(valor: number): void {
 
         if (valor <= 0 )
-            console.log(colors.fg.red, 'Não possui valor para Depositar!', colors.reset);
+            console.log(colors.fg.red, 'Deposito Inválido!', colors.reset);
         else
             this.saldo += valor;
     }
@@ -104,7 +109,7 @@ export abstract class Conta {
         console.log(`Número da Agência: ${this.agencia}`);
         console.log(`Nome do titular: ${this.titular}`);
         console.log(`Tipo da conta: ${tipo}`);
-        console.log(`Saldo da conta: R$${this._saldo.toFixed(2)}`, colors.reset);
+        console.log(`Saldo da conta: R$${formatarMoeda(this._saldo)}`, colors.reset);
     }
 
 }

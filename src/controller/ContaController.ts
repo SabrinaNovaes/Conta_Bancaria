@@ -16,7 +16,7 @@ export class ContaController implements ContaRepository {
         if (buscaConta !== null)
             buscaConta.visualizar();
         else 
-            console.log(colors.fg.red, '\nConta não Encontrada!', colors.reset);
+            console.log(colors.fg.red, `\nA Conta ${numero} não foi encontrada!`, colors.reset);
     }
 
     listarTodas(): void {
@@ -28,38 +28,36 @@ export class ContaController implements ContaRepository {
 
     cadastrar(conta: Conta): void {
         this.listaContas.push(conta);
-        console.log(colors.fg.green, `\nA Conta número ${conta.numero} foi cadastrada com sucesso!`, colors.reset);
+        console.log(colors.fg.green, `\nA Conta ${conta.numero} foi cadastrada com sucesso!`, colors.reset);
     
     }
 
     atualizar(conta: Conta): void {
         const buscaConta = this.buscarNoArray(conta.numero);
 
-        if (buscaConta !== null) { 
-        console.log(colors.fg.green, `\nA Conta número ${conta.numero} foi Atualizada com Sucesso!`, colors.reset);
-        } else 
-            console.log(colors.fg.red, '\nConta não Encontrada!', colors.reset);
+        if(buscaConta !== null){
+            this.listaContas[this.listaContas.indexOf(buscaConta)] = conta;
+            console.log(colors.fg.green, 
+                `\nA Conta número ${conta.numero} foi atualizada com sucesso!`, colors.reset);
+        }else
+            console.log(colors.fg.red, `\nA conta ${conta.numero} não foi encontrada!`, colors.reset);
     }
 
     deletar(numero: number): void {
         const buscarConta = this.buscarNoArray(numero);
 
-
         if (!buscarConta) {
-            console.log(colors.fg.red, '\nConta não encontrada!', colors.reset);
+            console.log(colors.fg.red, `\nConta ${numero} não foi encontrada!`, colors.reset);
             return;
         }
 
-        console.log(colors.fg.yellowstrong,`Você está prestes a apagar a conta número ${numero}`, colors.reset);
+        console.log(colors.fg.yellowstrong,`Você está prestes a apagar a conta ${numero}`, colors.reset);
         const confirmar = Input.keyInSelect(['1- Sim', '2- Nao'], 'Deseja Realmente apagar sua conta? ', {cancel: false}); 
 
         if ((confirmar === 0) && (buscarConta !== null)){
             this.listaContas.splice(this.listaContas.indexOf(buscarConta), 1);
-            console.log(colors.fg.green, `\n| Conta número ${numero} foi Deletada com Sucesso!`, colors.reset);
-
-            return;
-        } else
-            console.log(colors.fg.magenta, 'Retornado ao Menu...', colors.reset);
+            console.log(colors.fg.green, `\nA Conta ${numero} foi Deletada com Sucesso!`, colors.reset);
+        } 
 
         if (confirmar === -1) 
             console.log(colors.fg.magenta, '\nOperação cancelada pelo usuário!');
@@ -76,6 +74,7 @@ export class ContaController implements ContaRepository {
         }
 
     }
+
     depositar(numero: number, valor: number): void {
     
     }
@@ -95,6 +94,6 @@ export class ContaController implements ContaRepository {
             }   
         }         
         return null;
-    }
+    } 
     
 }

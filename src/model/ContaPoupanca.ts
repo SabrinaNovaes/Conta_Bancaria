@@ -3,10 +3,12 @@ import { colors } from '../util/Colors';
 
 export class ContaPoupanca extends Conta {
 
+    // Atributos específicos de Conta Poupança
     private _dataAniversario: number;
     private _rendimento: number = 0.005;
     private _ultimoMesRendimento: number = -1;
 
+    // Construtor com que chama a Super Classe
 	constructor(
         numero: number,
         agencia: number,
@@ -19,6 +21,7 @@ export class ContaPoupanca extends Conta {
         this._dataAniversario = dataAniversario;
 	}
 
+    // Métodos GET e SET especificos da ContaPoupança
     public get dataAniversario(): number {
 		return this._dataAniversario;
     }
@@ -60,6 +63,7 @@ export class ContaPoupanca extends Conta {
     }
 }
 
+    // Método visualizar sobrescrito (polimorfismo)
     public visualizar(): void {
         super.visualizar();
         console.log(colors.fg.whitestrong,`Data de Aniversário: ${this._dataAniversario}`, colors.reset);
