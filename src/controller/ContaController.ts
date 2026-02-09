@@ -1,6 +1,7 @@
 import { Conta } from "../model/Conta";
 import { ContaRepository } from "../repository/ContaRepository";
 import { colors } from "../util/Colors";
+import { formatarMoeda } from "../util/Currency";
 import { Input } from "../util/Input";
 
 export class ContaController implements ContaRepository {
@@ -17,6 +18,20 @@ export class ContaController implements ContaRepository {
             buscaConta.visualizar();
         else 
             console.log(colors.fg.red, `\nA Conta ${numero} não foi encontrada!`, colors.reset);
+    }
+
+    procurarPeloTitular(titular: string): void {
+
+        // Filtragem dos dados
+        const buscaTitular = this.listaContas.filter( conta => 
+            conta.titular.toUpperCase().includes(titular.toUpperCase()));
+
+        // Listagem dos dados filtrados
+        if (buscaTitular.length > 0) {
+            buscaTitular.forEach(conta => conta.visualizar())
+        } else {
+            console.log(colors.fg.red, `Conta ${titular} não encontrada!`);
+        }
     }
 
     listarTodas(): void {
@@ -68,18 +83,34 @@ export class ContaController implements ContaRepository {
     sacar(numero: number, valor: number): void {
         const buscaConta = this.buscarNoArray(numero);
 
-        if (!buscaConta) {
-            console.log(colors.fg.red, 'Conta não encontrada!', colors.reset);
-            return;
-        }
-
+        if (buscaConta !== null) {
+            if (buscaConta.sacar(valor) === true)
+                console.log(colors.fg.green, `\nO Saque no valor de ${formatarMoeda(valor)} na Conta ${numero} foi realizado com sucesso`, colors.reset);
+        } else 
+            console.log(colors.fg.red, `Conta ${numero} não encontrada!`, colors.reset);
     }
 
     depositar(numero: number, valor: number): void {
+        const buscaConta = this.buscarNoArray(numero);
+
+        if (buscaConta !== null) {
+            buscaConta.depositar(valor)
+            console.log(colors.fg.green, `\nO Depósito no valor de ${formatarMoeda(valor)} na Conta ${numero} foi realizado com sucesso!`);
+        } else 
+            console.log(colors.fg.red, `Conta ${numero} não encontrada!`, colors.reset);
     
     }
     transferir(numeroOrigem: number, numeroDestino: number, valor: number): void {
-    
+        const buscaContaOrigem = this.buscarNoArray(numeroOrigem);
+        const buscaContaDestino = this.buscarNoArray(numeroDestino);
+
+        if (buscaContaOrigem !== null && buscaContaDestino !== null) {
+            if (buscaContaOrigem.sacar(valor) === true) {
+                buscaContaDestino.depositar(valor);
+                console.log(colors.fg.green, `\nA transferencia no valor de ${formatarMoeda(valor)} da Conta ${numeroOrigem} para a Conta ${numeroDestino}, foi realizado com sucesso!`, colors.reset);
+            } else 
+                console.log(colors.fg.red, 'Conta de Origem ou Destino não encontrada!', colors.reset);
+        }
     }
 
     // Métodos Auxiliares
